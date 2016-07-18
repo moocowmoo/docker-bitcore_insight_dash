@@ -4,7 +4,8 @@ dockerized bitcore insight - alpha version
 
 # requirements
 
-    1GB ram
+    2GB ram to build
+    1GB ram to run
 
 # build
 
