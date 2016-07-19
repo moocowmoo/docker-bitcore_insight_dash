@@ -11,7 +11,7 @@ dockerized bitcore insight - alpha version
 
     git clone https://github.com/moocowmoo/dash-docker-bitcore_insight
     cd dash-docker-bitcore_insight
-    sudo docker build -t dashorg/bitcore_insight:1.0 .
+    sudo docker build -t dash/bitcore_insight:1.0 .
     # go have a sandwich, takes 30+ minutes
     # verify build completed successfully, then
     sudo docker create -p 3001:3001 --name bitcore_insight dash/bitcore_insight:1.0
