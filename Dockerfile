@@ -1,8 +1,10 @@
 # Dockerfile for bitcore-dash-insight
 
-FROM ubuntu:xenial
+# alpha - unoptimized
+
+FROM phusion/baseimage:0.9.19
 MAINTAINER moocowmoo <moocowmoo@dash.org>
-LABEL description="dockerized bitcore/insight"
+LABEL description="dockerized bitcore/insight-api"
 
 # replace shell with bash so we can source files
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -45,14 +47,16 @@ RUN apt-get update \
 
 # compile dashd 12.1
 RUN cd /tmp \
-    && git clone https://github.com/snogcel/dash-bitcore-test -b dashBitcore \
-    && cd dash-bitcore-test \
+    && git clone https://github.com/snogcel/dash -b v0.12.1.x \
+    && cd dash \
+    && git reset --hard d368bc84c84209ef27281bea32c30f0df890490c \
     && ./autogen.sh \
     && ./configure \
     && make
 
-# install dashd 12.1
-RUN cp /tmp/dash-bitcore-test/src/{dashd,dash-cli} /usr/bin
+# copy compiled dashd 12.1, delete source
+RUN cp /tmp/dash/src/{dashd,dash-cli} /usr/bin \
+    && rm -rf /tmp/dash
 
 # setup and switch to user bitcore
 RUN /usr/sbin/useradd -s /bin/bash -m -d /bitcore bitcore \

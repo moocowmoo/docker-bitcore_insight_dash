@@ -1,6 +1,6 @@
-# dash-docker-bitcore_insight
+# docker-bitcore_insight_dash
 
-dockerized bitcore insight - alpha version
+dockerized bitcore insight-api for dash - alpha version
 
 # requirements
 
@@ -9,12 +9,12 @@ dockerized bitcore insight - alpha version
 
 # build
 
-    git clone https://github.com/moocowmoo/dash-docker-bitcore_insight
-    cd dash-docker-bitcore_insight
-    sudo docker build -t dash/bitcore_insight:1.1 .
+    git clone https://github.com/moocowmoo/docker-bitcore_insight_dash
+    cd docker-bitcore_insight_dash
+    sudo docker build -t dashpay/bitcore_insight:1.1 .
     # go have a sandwich, takes 30+ minutes
     # verify build completed successfully, then
-    sudo docker create -p 3001:3001 --name bitcore_insight dash/bitcore_insight:1.1
+    sudo docker create -p 3001:3001 --name bitcore_insight dashpay/bitcore_insight:1.1
 
 # start/stop
 
