@@ -80,6 +80,7 @@ RUN cd $HOME \
     && nvm use v5.0.0 \
     && mkdir -p $HOME/.bitcore/data \
     && ln -s /usr/bin/dashd $HOME/.bitcore/data \
+    #update me
     && npm install -g bitcore-node-dash \
     && bitcore-node-dash create dash-node -d $HOME/.bitcore/data \
     && cd dash-node \
