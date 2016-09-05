@@ -1,10 +1,10 @@
-# Dockerfile for bitcore-dash-insight
+# Dockerfile for bitcore-dash-nu
 
 # alpha - unoptimized
 
 FROM phusion/baseimage:0.9.19
-MAINTAINER moocowmoo <moocowmoo@dash.org>
-LABEL description="dockerized bitcore/insight-api"
+MAINTAINER nubitcore <nubitcore@github.io>
+LABEL description="dockerized nubitcore/insight-api"
 
 # replace shell with bash so we can source files
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -47,14 +47,14 @@ RUN apt-get update \
 
 # compile dashd 12.1
 RUN cd /tmp \
-    && git clone https://github.com/snogcel/dash -b v0.12.1.x \
+    && git clone https://github.com/nubitcore/dash -b v0.12.1.x \
     && cd dash \
     && git reset --hard d368bc84c84209ef27281bea32c30f0df890490c \
     && ./autogen.sh \
     && ./configure \
     && make
 
-# copy compiled dashd 12.1, delete source
+# copy compiled nud 12.1, delete source
 RUN cp /tmp/dash/src/{dashd,dash-cli} /usr/bin \
     && rm -rf /tmp/dash
 
@@ -80,6 +80,7 @@ RUN cd $HOME \
     && nvm use v5.0.0 \
     && mkdir -p $HOME/.bitcore/data \
     && ln -s /usr/bin/dashd $HOME/.bitcore/data \
+    #update me
     && npm install -g bitcore-node-dash \
     && bitcore-node-dash create dash-node -d $HOME/.bitcore/data \
     && cd dash-node \
